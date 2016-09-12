@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 // ReactDOM.render(<App/>, document.getElementById('app'));
 ReactDOM.render(
 	<h1>Hello, World!</h1>,
-	document.getElementById('example')
+	document.getElementById('app')
 );
 
 
