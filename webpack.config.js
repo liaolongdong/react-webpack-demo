@@ -1,9 +1,8 @@
-// var path = require('path');
 
 var config = {
 	entry: './main.js',
 	output: {
-		path: './',
+		path: './bundle',
 		filename: 'index.js'
 	},
 	devServer: {
