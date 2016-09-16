@@ -59,11 +59,31 @@
 	// import App from './app.jsx';
 
 	// ReactDOM.render(<App/>, document.getElementById('app'));
+	// ReactDOM.render(
+	// 	<h1>Hello, World!</h1>,
+	// 	document.getElementById('app')
+	// );
+
+	// 自定义属性
 	_reactDom2.default.render(_react2.default.createElement(
-		'h1',
+		'div',
 		null,
-		'Hello, World!'
-	), document.getElementById('app'));
+		_react2.default.createElement(
+			'h1',
+			null,
+			'标题一'
+		),
+		_react2.default.createElement(
+			'h2',
+			null,
+			'标题二'
+		),
+		_react2.default.createElement(
+			'p',
+			{ 'data-myattribute': 'somevalue' },
+			'这是一个很不错的JavaSricpt库！'
+		)
+	), document.getElementById('example'));
 
 /***/ },
 /* 1 */
