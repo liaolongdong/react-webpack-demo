@@ -64,25 +64,40 @@
 	// 	document.getElementById('app')
 	// );
 
+	var style = {
+		fontSize: 10,
+		color: 'blue'
+	};
+	var arr = [_react2.default.createElement(
+		'h1',
+		null,
+		'数组的第一个元素'
+	), _react2.default.createElement(
+		'h2',
+		null,
+		'数组的第二个元素'
+	)];
 	// 自定义属性
-	_reactDom2.default.render(_react2.default.createElement(
+	_reactDom2.default.render(
+	// <div>
+	// 	<h1>标题一</h1>
+	// 	<h2>标题二</h2>
+	// 	// 使用表达式，表达式写在花括号{}中
+	// 	<h3>1 + 1 = {1 + 1}</h3>
+	// 	// 在JSX中不能使用if else，但可以使用三元运算表达式
+	// 	<h4>i == 1吗？{i == 1 ? 'true' : 'false'}</h4>
+	// 	// 样式
+	// 	<h5>这是10像素蓝色字体</h5>
+	// 	// 注释
+	// 	{/* 这是注释。。*/}
+	// 	// JSX允许在模板中插入数组，数组会自动展开所有成员
+	// 	<div>{arr}</div>
+	// 	<p data-myattribute="somevalue">这是一个很不错的JavaSricpt库！</p>
+	// </div>,
+	_react2.default.createElement(
 		'div',
 		null,
-		_react2.default.createElement(
-			'h1',
-			null,
-			'标题一'
-		),
-		_react2.default.createElement(
-			'h2',
-			null,
-			'标题二'
-		),
-		_react2.default.createElement(
-			'p',
-			{ 'data-myattribute': 'somevalue' },
-			'这是一个很不错的JavaSricpt库！'
-		)
+		arr
 	), document.getElementById('example'));
 
 /***/ },
