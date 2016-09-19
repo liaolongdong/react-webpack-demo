@@ -208,24 +208,146 @@ var i = 1;
 
 // 设置状态：setState
 // setState(object nextState[, function callback])
-var Counter = React.createClass({
+// var Counter = React.createClass({
+// 	getInitialState: function(){
+// 		return {
+// 			clickCount: 0
+// 		};
+// 	},
+// 	handleClick: function(){
+// 		this.setState(function(state){
+// 			return {
+// 				clickCount: state.clickCount + 1
+// 			};
+// 		});
+// 	},
+// 	render: function(){
+// 		return (<h2 onClick={this.handleClick}>点我，点击次数为：{this.state.clickCount}</h2>);
+// 	}
+// });
+// ReactDOM.render(<Counter/>, document.getElementById('message'));
+
+// React组件生命周期
+// var Hello = React.createClass({
+// 	getInitialState: function(){
+// 		return {
+// 			opacity: 1.0
+// 		};
+// 	},
+// 	componentDidMount: function(){
+// 		this.timer = setInterval(function(){
+// 			var opacity = this.state.opacity;
+// 			opacity -= .05;
+// 			if(opacity < 0.1){
+// 				opacity = 1.0;
+// 			}
+// 			this.setState({
+// 				opacity: opacity
+// 			});
+// 		}.bind(this), 100);
+// 	},
+// 	render: function(){
+// 		return (
+// 			<div style={{opacity: this.state.opacity}}>
+// 				Hello {this.props.name}
+// 			</div>
+// 		);
+// 	}
+// });
+// ReactDOM.render(<Hello name="World ! "/>, document.getElementById('example'));
+
+var Button = React.createClass({
 	getInitialState: function(){
 		return {
-			clickCount: 0
+			data: 0
 		};
 	},
-	handleClick: function(){
-		this.setState(function(state){
-			return {
-				clickCount: state.clickCount + 1
-			};
+	setNewNumber: function(){
+		this.setState({
+			data: this.state.data + 1
 		});
 	},
 	render: function(){
-		return (<h2 onClick={this.handleClick}>点我，点击次数为：{this.state.clickCount}</h2>);
+		return (
+			<div>
+				<button onClick={this.setNewNumber}>increment</button>
+				<Content myNumber={this.state.data}></Content>
+			</div>
+		);
 	}
 });
-ReactDOM.render(<Counter/>, document.getElementById('message'));
+var Content = React.createClass({
+	componentWillMount: function(){
+		console.log('Component Will Mount!');
+	},
+	componentDidMount: function(){
+		console.log('Component Did Mount!');
+	},
+	componentWillReceiveProps: function(newProps){
+		console.log('newProps: ' + newProps);
+		console.log('Component Will Receive Props!');
+	},
+	shouldComponentUpdate: function(newProps, newState){
+		console.log('newProps:' + newProps + ',newState: ' + newState);
+		console.log('Should Component Update! return true');
+		return true;
+	},
+	componentWillUpdate: function(nextProps, nextState){
+		console.log('nextProps: ' + nextProps + ',nextState: ' + nextState);
+		console.log('Componnet Will Update!');
+	},
+	componentDidUpdate: function(prevProps, prevState){
+		console.log('prevProps: ' + prevProps + ',prevState: ' + prevState);
+		console.log('Component Did Update');
+	},
+	componentWillUnmount: function(){
+		cosole.log('Componnet Will Unmount!');
+	},
+	render: function(){
+		return (
+			<div>
+				<h3>{this.props.myNumber}</h3>
+			</div>
+		);
+	}
+});
+ReactDOM.render(<div><Button/></div>, document.getElementById('example'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

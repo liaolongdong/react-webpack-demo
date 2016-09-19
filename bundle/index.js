@@ -268,31 +268,126 @@
 
 	// 设置状态：setState
 	// setState(object nextState[, function callback])
-	var Counter = _react2.default.createClass({
-		displayName: 'Counter',
+	// var Counter = React.createClass({
+	// 	getInitialState: function(){
+	// 		return {
+	// 			clickCount: 0
+	// 		};
+	// 	},
+	// 	handleClick: function(){
+	// 		this.setState(function(state){
+	// 			return {
+	// 				clickCount: state.clickCount + 1
+	// 			};
+	// 		});
+	// 	},
+	// 	render: function(){
+	// 		return (<h2 onClick={this.handleClick}>点我，点击次数为：{this.state.clickCount}</h2>);
+	// 	}
+	// });
+	// ReactDOM.render(<Counter/>, document.getElementById('message'));
+
+	// React组件生命周期
+	// var Hello = React.createClass({
+	// 	getInitialState: function(){
+	// 		return {
+	// 			opacity: 1.0
+	// 		};
+	// 	},
+	// 	componentDidMount: function(){
+	// 		this.timer = setInterval(function(){
+	// 			var opacity = this.state.opacity;
+	// 			opacity -= .05;
+	// 			if(opacity < 0.1){
+	// 				opacity = 1.0;
+	// 			}
+	// 			this.setState({
+	// 				opacity: opacity
+	// 			});
+	// 		}.bind(this), 100);
+	// 	},
+	// 	render: function(){
+	// 		return (
+	// 			<div style={{opacity: this.state.opacity}}>
+	// 				Hello {this.props.name}
+	// 			</div>
+	// 		);
+	// 	}
+	// });
+	// ReactDOM.render(<Hello name="World ! "/>, document.getElementById('example'));
+
+	var Button = _react2.default.createClass({
+		displayName: 'Button',
 
 		getInitialState: function getInitialState() {
 			return {
-				clickCount: 0
+				data: 0
 			};
 		},
-		handleClick: function handleClick() {
-			this.setState(function (state) {
-				return {
-					clickCount: state.clickCount + 1
-				};
+		setNewNumber: function setNewNumber() {
+			this.setState({
+				data: this.state.data + 1
 			});
 		},
 		render: function render() {
 			return _react2.default.createElement(
-				'h2',
-				{ onClick: this.handleClick },
-				'点我，点击次数为：',
-				this.state.clickCount
+				'div',
+				null,
+				_react2.default.createElement(
+					'button',
+					{ onClick: this.setNewNumber },
+					'increment'
+				),
+				_react2.default.createElement(Content, { myNumber: this.state.data })
 			);
 		}
 	});
-	_reactDom2.default.render(_react2.default.createElement(Counter, null), document.getElementById('message'));
+	var Content = _react2.default.createClass({
+		displayName: 'Content',
+
+		componentWillMount: function componentWillMount() {
+			console.log('Component Will Mount!');
+		},
+		componentDidMount: function componentDidMount() {
+			console.log('Component Did Mount!');
+		},
+		componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+			console.log('newProps: ' + newProps);
+			console.log('Component Will Receive Props!');
+		},
+		shouldComponentUpdate: function shouldComponentUpdate(newProps, newState) {
+			console.log('newProps:' + newProps + ',newState: ' + newState);
+			console.log('Should Component Update! return true');
+			return true;
+		},
+		componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
+			console.log('nextProps: ' + nextProps + ',nextState: ' + nextState);
+			console.log('Componnet Will Update!');
+		},
+		componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+			console.log('prevProps: ' + prevProps + ',prevState: ' + prevState);
+			console.log('Component Did Update');
+		},
+		componentWillUnmount: function componentWillUnmount() {
+			cosole.log('Componnet Will Unmount!');
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					'h3',
+					null,
+					this.props.myNumber
+				)
+			);
+		}
+	});
+	_reactDom2.default.render(_react2.default.createElement(
+		'div',
+		null,
+		_react2.default.createElement(Button, null)
+	), document.getElementById('example'));
 
 /***/ },
 /* 1 */
