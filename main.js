@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 
 // import App from './app.jsx';
 
@@ -256,69 +257,171 @@ var i = 1;
 // });
 // ReactDOM.render(<Hello name="World ! "/>, document.getElementById('example'));
 
-var Button = React.createClass({
-	getInitialState: function(){
-		return {
-			data: 0
-		};
-	},
-	setNewNumber: function(){
-		this.setState({
-			data: this.state.data + 1
-		});
+// var Button = React.createClass({
+// 	getInitialState: function(){
+// 		return {
+// 			data: 0
+// 		};
+// 	},
+// 	setNewNumber: function(){
+// 		this.setState({
+// 			data: this.state.data + 1
+// 		});
+// 	},
+// 	render: function(){
+// 		return (
+// 			<div>
+// 				<button onClick={this.setNewNumber}>increment</button>
+// 				<Content myNumber={this.state.data}></Content>
+// 			</div>
+// 		);
+// 	}
+// });
+// var Content = React.createClass({
+// 	componentWillMount: function(){
+// 		console.log('Component Will Mount!');
+// 	},
+// 	componentDidMount: function(){
+// 		console.log('Component Did Mount!');
+// 	},
+// 	componentWillReceiveProps: function(newProps){
+// 		console.log('newProps: ' + newProps);
+// 		console.log('Component Will Receive Props!');
+// 	},
+// 	shouldComponentUpdate: function(newProps, newState){
+// 		console.log('newProps:' + newProps + ',newState: ' + newState);
+// 		console.log('Should Component Update! return true');
+// 		return true;
+// 	},
+// 	componentWillUpdate: function(nextProps, nextState){
+// 		console.log('nextProps: ' + nextProps + ',nextState: ' + nextState);
+// 		console.log('Componnet Will Update!');
+// 	},
+// 	componentDidUpdate: function(prevProps, prevState){
+// 		console.log('prevProps: ' + prevProps + ',prevState: ' + prevState);
+// 		console.log('Component Did Update');
+// 	},
+// 	componentWillUnmount: function(){
+// 		cosole.log('Componnet Will Unmount!');
+// 	},
+// 	render: function(){
+// 		return (
+// 			<div>
+// 				<h3>{this.props.myNumber}</h3>
+// 			</div>
+// 		);
+// 	}
+// });
+// ReactDOM.render(<div><Button/></div>, document.getElementById('example'));
+
+// React AJAX
+// var UserGist = React.createClass({
+// 	getInitialState: function(){
+// 		return {
+// 			username: '',
+// 			lastGistUrl: ''
+// 		};
+// 	},
+// 	componentDidMount: function(){
+// 		this.serverRequest = $.get(this.props.source, function(result){
+// 			var lastGist = result[0];
+// 			this.setState({
+// 				username: lastGist.owner.login,
+// 				lastGistUrl: lastGist.html_url
+// 			});
+// 		}.bind(this));
+// 	},
+// 	componentWillUnmount: function(){
+// 		this.serverRequest.abort();
+// 	},
+// 	render: function(){
+// 		return (
+// 			<div>
+// 				{this.state.username} 用户最新的 Gist 共享地址：
+// 				<a href={this.state.lastGistUrl}>{this.state.lastGistUrl}</a>
+// 			</div>
+// 		);
+// 	}
+// });
+// ReactDOM.render(
+// 	<UserGist source="https://api.github.com/users/octocat/gists"/>, 
+// 	document.getElementById('example')
+// );
+
+// React表单与事件
+// var HelloMessage = React.createClass({
+// 	getInitialState: function(){
+// 		return {
+// 			value: 'Hello Better ! '
+// 		}
+// 	},
+// 	handleChange: function(event){
+// 		this.setState({
+// 			value: event.target.value
+// 		});
+// 	},
+// 	render: function(){
+// 		var value = this.state.value;
+// 		return (
+// 			<div>
+// 				<input type="text" value={value} onChange={this.handleChange}/>
+// 				<h4>{value}</h4>
+// 			</div>
+// 		);
+// 	}
+// });
+// ReactDOM.render(<HelloMessage/>, document.getElementById('example'));
+
+// 在子组件上使用表单
+// var Content = React.createClass({
+// 	render: function(){
+// 		return (
+// 			<div>
+// 				<input type="text" value={this.props.myDataProp} onChange={this.props.updateStateProp}/>
+// 				<h4>{this.props.myDataProp}</h4>
+// 			</div>
+// 		);
+// 	}
+// });
+// var HelloMessage = React.createClass({
+// 	getInitialState: function(){
+// 		return {
+// 			value: 'Hello Better !'
+// 		};
+// 	},
+// 	handleChange: function(event){
+// 		this.setState({
+// 			value: event.target.value
+// 		});
+// 	},
+// 	render: function(){
+// 		var value = this.state.value;
+// 		return (
+// 			<div>
+// 				<Content myDataProp={value} updateStateProp={this.handleChange}></Content>
+// 			</div>
+// 		);
+// 	}
+// });
+// ReactDOM.render(<HelloMessage/>, document.getElementById('example'));
+
+// React refs属性
+var MyComponent = React.createClass({
+	handleClick: function(){
+		// 使用原生的DOM API获取焦点
+		this.refs.myInput.focus();
 	},
 	render: function(){
+		// 当前插入到DOM后，ref属性添加一个组件的应用到this.refs
 		return (
 			<div>
-				<button onClick={this.setNewNumber}>increment</button>
-				<Content myNumber={this.state.data}></Content>
+				<input type="text" ref="myInput"/>
+				<input type="button" value="点我获取输入框焦点" onClick={this.handleClick}/>
 			</div>
 		);
 	}
 });
-var Content = React.createClass({
-	componentWillMount: function(){
-		console.log('Component Will Mount!');
-	},
-	componentDidMount: function(){
-		console.log('Component Did Mount!');
-	},
-	componentWillReceiveProps: function(newProps){
-		console.log('newProps: ' + newProps);
-		console.log('Component Will Receive Props!');
-	},
-	shouldComponentUpdate: function(newProps, newState){
-		console.log('newProps:' + newProps + ',newState: ' + newState);
-		console.log('Should Component Update! return true');
-		return true;
-	},
-	componentWillUpdate: function(nextProps, nextState){
-		console.log('nextProps: ' + nextProps + ',nextState: ' + nextState);
-		console.log('Componnet Will Update!');
-	},
-	componentDidUpdate: function(prevProps, prevState){
-		console.log('prevProps: ' + prevProps + ',prevState: ' + prevState);
-		console.log('Component Did Update');
-	},
-	componentWillUnmount: function(){
-		cosole.log('Componnet Will Unmount!');
-	},
-	render: function(){
-		return (
-			<div>
-				<h3>{this.props.myNumber}</h3>
-			</div>
-		);
-	}
-});
-ReactDOM.render(<div><Button/></div>, document.getElementById('example'));
-
-
-
-
-
-
-
+ReactDOM.render(<MyComponent/>, document.getElementById('example'));
 
 
 
